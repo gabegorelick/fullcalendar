@@ -86,7 +86,10 @@ function Calendar(element, options, eventSources) {
 		content = $("<div class='fc-content' style='position:relative'/>")
 			.prependTo(element);
 		header = new Header(t, options);
-		headerElement = header.render();
+		/* Thomas on 21 Oct this is to hide base Header and is based on new config option hideHeaders */
+		if (!options.hideHeaders) {
+			headerElement = header.render();
+		}
 		if (headerElement) {
 			element.prepend(headerElement);
 		}

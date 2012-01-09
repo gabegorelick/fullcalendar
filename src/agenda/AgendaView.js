@@ -231,7 +231,7 @@ function AgendaView(element, calendar, viewName) {
 			s =
 				"<table style='width:100%' class='fc-agenda-allday' cellspacing='0'>" +
 				"<tr>" +
-				"<th class='" + headerClass + " fc-agenda-axis'>" + opt('allDayText') + "</th>" +
+				"<th class='" + headerClass + " fc-agenda-axis fc-agenda-axis-allday'>" + opt('allDayText') + "</th>" +
 				"<td>" +
 				"<div class='fc-day-content'><div style='position:relative'/></div>" +
 				"</td>" +
@@ -259,7 +259,9 @@ function AgendaView(element, calendar, viewName) {
 		}
 		
 		slotScroller =
-			$("<div style='position:absolute;width:100%;overflow-x:hidden;overflow-y:auto'/>")
+			//$("<div style='position:absolute;width:100%;overflow-x:hidden;overflow-y:auto'/>")
+			/* Thomas Oct 22, this is to remove scrollbar  for week and day view*/
+			$("<div style='position:absolute;width:100%;overflow-x:hidden;overflow-y:hidden'/>")
 				.appendTo(slotLayer);
 				
 		slotContent =
@@ -340,12 +342,14 @@ function AgendaView(element, calendar, viewName) {
 			slotTable.height() + allDayHeight + 1 // when no scrollbars. +1 for bottom border
 		);
 		
-		dayBodyFirstCellStretcher
-			.height(bodyHeight - vsides(dayBodyFirstCell));
-		
+		/*Thomas Oct 22 to adjust height of  hightlighted  div container to fit into whole page */
+		//dayBodyFirstCellStretcher.height(bodyHeight - vsides(dayBodyFirstCell));
+		dayBodyFirstCellStretcher.height(slotTable.height()+allDayHeight);
+
 		slotLayer.css('top', headHeight);
 		
-		slotScroller.height(bodyHeight - allDayHeight - 1);
+		//slotScroller.height(bodyHeight - allDayHeight - 1); Thomas Oct 22 //this is to make scrollable div of week and day view to take full height
+		slotScroller.height(slotTable.height());
 		
 		slotHeight = slotTableFirstInner.height() + 1; // +1 for border
 		
