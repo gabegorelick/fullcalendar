@@ -125,6 +125,7 @@ function View(element, calendar, viewName) {
 	function reportEventClear() {
 		eventElements = [];
 		eventElementsByID = {};
+		trigger('eventClear');
 	}
 	
 	
