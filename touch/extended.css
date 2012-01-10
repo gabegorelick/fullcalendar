@@ -1,3 +1,9 @@
+.fc-content * {
+	/* Sencha's non-standard box-sizing messes up FullCalendar */
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
 .fc-agenda-axis-allday{
     font-size:16px;
 }
@@ -6,6 +12,6 @@
     height:auto !important;
 }
 
-.fc-view-agendaDay .fc-agenda-days thead{
+.fc-view-agendaDay .fc-agenda-days thead {
     display :none;
 }
